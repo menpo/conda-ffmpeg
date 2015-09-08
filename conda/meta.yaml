@@ -1,0 +1,35 @@
+package:
+  name: ffmpeg
+  version: "2.7.0"
+
+source:
+  fn: ffmpeg-2.7-win32-static.7z  # [win32]
+  url: http://ffmpeg.zeranoe.com/builds/win32/static/ffmpeg-2.7-win32-static.7z  # [win32]
+  sha256: ea8f59c382771239539b229858db7eaaf0f19200870dba84a223f8065477d95e  # [win32]
+  fn: ffmpeg-2.7-win64-static.7z  # [win64]
+  url: http://ffmpeg.zeranoe.com/builds/win64/static/ffmpeg-2.7-win64-static.7z  # [win64]
+  sha256: e19c11e174e2337d6fa144f3d103733ebd43a0e016a3f1c50597e4fdf75a247b  # [win64]
+  fn: SnowLeopard_Lion_Mountain_Lion_Mavericks_Yosemite_15.06.2015.zip  # [osx]
+  url: http://ffmpegmac.net/resources/SnowLeopard_Lion_Mountain_Lion_Mavericks_Yosemite_15.06.2015.zip  # [osx]
+  sha256: e38fad63ca7f1f6cd6ace0ea07893f940cb54737ea9f6cd9da51f7194daa8dd0  # [osx]
+  # These Linux builds are actually 2.7.2 but the downloads aren't versioned
+  # so I'm relying on the SHASUM to protect accidental upgrades.
+  fn: ffmpeg-release-32bit-static.tar.xz  # [linux32]
+  url: http://johnvansickle.com/ffmpeg/releases/ffmpeg-release-32bit-static.tar.xz  # [linux32]
+  sha256: ab563cfa8cc40aaa86e3e809430d1c27cd07b0cda994ba264b6453fc67cc61b6  # [linux32]
+  fn: ffmpeg-release-64bit-static.tar.xz  # [linux64]
+  url: http://johnvansickle.com/ffmpeg/releases/ffmpeg-release-64bit-static.tar.xz  # [linux64]
+  sha256: 384f55c82beaae3c01589f4a2636fdcc042aa181b8f5b335593fc17e72372d0a  # [linux64]
+
+requirements:
+  build:
+    - 7zip  # [win]
+
+test:
+  commands:
+    - ffmpeg -version
+
+about:
+  home: https://www.ffmpeg.org/
+  license: LGPL
+
