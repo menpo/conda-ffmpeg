@@ -8,7 +8,7 @@ source:
   sha256: ea8f59c382771239539b229858db7eaaf0f19200870dba84a223f8065477d95e  # [win32]
   fn: ffmpeg-2.7-win64-static.7z  # [win64]
   url: http://ffmpeg.zeranoe.com/builds/win64/static/ffmpeg-2.7-win64-static.7z  # [win64]
-  sha256: e19c11e174e2337d6fa144f3d103733ebd43a0e016a3f1c50597e4fdf75a247b  # [win64]
+  sha256: e189b118362b695bc63807147d2192779c6f5de0bb5025320e451ec057a9d733  # [win64]
   fn: SnowLeopard_Lion_Mountain_Lion_Mavericks_Yosemite_15.06.2015.zip  # [osx]
   url: http://ffmpegmac.net/resources/SnowLeopard_Lion_Mountain_Lion_Mavericks_Yosemite_15.06.2015.zip  # [osx]
   sha256: e38fad63ca7f1f6cd6ace0ea07893f940cb54737ea9f6cd9da51f7194daa8dd0  # [osx]
@@ -27,7 +27,8 @@ requirements:
 
 test:
   commands:
-    - ffmpeg -version
+    - ffmpeg -version  # [not win]
+    - ffmpeg.exe -version  # [win]
 
 about:
   home: https://www.ffmpeg.org/
