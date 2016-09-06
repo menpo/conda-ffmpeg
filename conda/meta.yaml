@@ -1,25 +1,27 @@
+{% set version = "2.8.6" %}
+{% set linux_version = "3.1.3" %}
+{% set windows_base_url = "https://ffmpeg.zeranoe.com/builds/" %}
+
 package:
   name: ffmpeg
-  version: "2.7.0"
+  version: {{ version }}        # [not linux]
+  version: {{ linux_version }}  # [linux]
 
 source:
-  fn: ffmpeg-2.7-win32-static.7z  # [win32]
-  url: http://ffmpeg.zeranoe.com/builds/win32/static/ffmpeg-2.7-win32-static.7z  # [win32]
-  sha256: ea8f59c382771239539b229858db7eaaf0f19200870dba84a223f8065477d95e  # [win32]
-  fn: ffmpeg-2.7-win64-static.7z  # [win64]
-  url: http://ffmpeg.zeranoe.com/builds/win64/static/ffmpeg-2.7-win64-static.7z  # [win64]
-  sha256: e189b118362b695bc63807147d2192779c6f5de0bb5025320e451ec057a9d733  # [win64]
-  fn: SnowLeopard_Lion_Mountain_Lion_Mavericks_Yosemite_15.06.2015.zip  # [osx]
-  url: http://ffmpegmac.net/resources/SnowLeopard_Lion_Mountain_Lion_Mavericks_Yosemite_15.06.2015.zip  # [osx]
-  sha256: e38fad63ca7f1f6cd6ace0ea07893f940cb54737ea9f6cd9da51f7194daa8dd0  # [osx]
-  # These Linux builds are actually 2.7.2 but the downloads aren't versioned
-  # so I'm relying on the SHASUM to protect accidental upgrades.
-  fn: ffmpeg-release-32bit-static.tar.xz  # [linux32]
-  url: http://johnvansickle.com/ffmpeg/releases/ffmpeg-release-32bit-static.tar.xz  # [linux32]
-  sha256: ab563cfa8cc40aaa86e3e809430d1c27cd07b0cda994ba264b6453fc67cc61b6  # [linux32]
-  fn: ffmpeg-release-64bit-static.tar.xz  # [linux64]
+  fn: ffmpeg-{{ version }}-win32-static.7z                                       # [win32]
+  url: {{ windows_base_url }}/win32/static/ffmpeg-{{ version }}-win32-static.7z  # [win32]
+  sha256: 7af6acfd20094d29bfc4f2c07979d7d853e8e521869e52c344ba247a50485b8b       # [win32]
+  fn: ffmpeg-{{ version }}-win64-static.7z                                       # [win64]
+  url: {{ windows_base_url }}/win64/static/ffmpeg-{{ version }}-win64-static.7z  # [win64]
+  sha256: 3e68fc7158cd6d8696ef1a5b0a6ad981409c42e11699245eb0e808a5922c0577       # [win64]
+  fn: SnowLeopard_Lion_Mountain_Lion_Mavericks_Yosemite_El-Captain_02.02.2016.zip                                      # [osx]
+  url: http://www.ffmpegmac.net/resources/SnowLeopard_Lion_Mountain_Lion_Mavericks_Yosemite_El-Captain_02.02.2016.zip  # [osx]
+  sha256: 723f23b5c6c9451a1732fcd8978d6675d69d33162d8780aa1db7c18b3eb54edc                                             # [osx]
+  # This Linux build is actually 3.1.3 but the downloads aren't versioned
+  # so I'm relying on the MD5 provided on the website to protect accidental upgrades.
+  fn: ffmpeg-release-64bit-static.tar.xz                                            # [linux64]
   url: http://johnvansickle.com/ffmpeg/releases/ffmpeg-release-64bit-static.tar.xz  # [linux64]
-  sha256: 384f55c82beaae3c01589f4a2636fdcc042aa181b8f5b335593fc17e72372d0a  # [linux64]
+  md5: ea0d2e6b974559b529d048c498e371e5                                             # [linux64]
 
 requirements:
   build:
@@ -27,10 +29,9 @@ requirements:
 
 test:
   commands:
-    - ffmpeg -version  # [not win]
-    - ffmpeg.exe -version  # [win]
+    - ffmpeg -version
+    - ffprobe -version
 
 about:
   home: https://www.ffmpeg.org/
   license: LGPL
-
