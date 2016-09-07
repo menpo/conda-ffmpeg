@@ -1,11 +1,7 @@
 7z x *.7z
 
-rem Not sure why we have to do this?
-rm %SCRIPTS%
-mkdir %SCRIPTS%
-
-copy "ffmpeg-2.7-win%ARCH%-static\bin\ffmpeg.exe" "%SCRIPTS%\ffmpeg.exe"
-copy "ffmpeg-2.7-win%ARCH%-static\bin\ffplay.exe" "%SCRIPTS%\ffplay.exe"
-copy "ffmpeg-2.7-win%ARCH%-static\bin\ffprobe.exe" "%SCRIPTS%\ffprobe.exe"
+copy "ffmpeg-%PKG_VERSION%-win%ARCH%-static\bin\ffmpeg.exe" "%LIBRARY_BIN%\ffmpeg.exe"
+copy "ffmpeg-%PKG_VERSION%-win%ARCH%-static\bin\ffplay.exe" "%LIBRARY_BIN%\ffplay.exe"
+copy "ffmpeg-%PKG_VERSION%-win%ARCH%-static\bin\ffprobe.exe" "%LIBRARY_BIN%\ffprobe.exe"
 
 if errorlevel 1 exit 1
